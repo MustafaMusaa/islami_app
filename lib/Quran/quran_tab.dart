@@ -355,6 +355,10 @@ class QuranTab extends StatelessWidget {
     '6'
   ];
 
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
