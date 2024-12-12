@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/Quran/sura_modal.dart';
 import '../color_data.dart';
 
 class SuraList extends StatelessWidget {
-  String suraNumber;
-  String ayaNumbers;
-  String suraEnName;
-  String suraArName;
+  SuraModal suraModal;
+
 
   SuraList({
-    required this.suraNumber,
-    required this.ayaNumbers,
-    required this.suraEnName,
-    required this.suraArName,
+    required this.suraModal
   });
 
   @override
@@ -25,7 +21,7 @@ class SuraList extends StatelessWidget {
             children: [
               Image(image: AssetImage('assets/images/Vector.png')),
               Text(
-                '${suraNumber}',
+                '${suraModal.suraNumber+1}',
                 style: TextStyle(color: ColorData.white),
               ),
             ],
@@ -37,14 +33,14 @@ class SuraList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '$suraEnName',
+                '${suraModal.suraEnName}',
                 style: TextStyle(
                     color: ColorData.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                '$ayaNumbers',
+                '${suraModal.numberOfAyat} verses',
                 style: TextStyle(
                     color: ColorData.white,
                     fontSize: 10,
@@ -54,7 +50,7 @@ class SuraList extends StatelessWidget {
           ),
           Spacer(),
           Text(
-            '$suraArName',
+            '${suraModal.suraArName}',
             style: TextStyle(
                 color: ColorData.white,
                 fontSize: 16,
