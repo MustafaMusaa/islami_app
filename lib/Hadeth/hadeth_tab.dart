@@ -15,6 +15,7 @@ class _HadethTabState extends State<HadethTab> {
   List<HadethModal> hadethMatnList = [];
 
   void loadHadethMatn() async {
+
     for (int i = 1; i <= 50; i++) {
       String hadethMatn = await rootBundle.loadString('assets/files/h$i.txt');
       List<String> hadethLines = hadethMatn.split('\n');
@@ -22,12 +23,21 @@ class _HadethTabState extends State<HadethTab> {
       hadethLines.removeAt(0);
       HadethModal hadethModal = HadethModal(title: title, matn: hadethLines);
       hadethMatnList.add(hadethModal);
+
     }
+
+    setState(() {
+
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    loadHadethMatn();
+    if(hadethMatnList.isEmpty) {
+      loadHadethMatn();
+
+    }
+
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
@@ -80,7 +90,7 @@ class _HadethTabState extends State<HadethTab> {
                       SizedBox(height: 20,),
                       Expanded(
                           child: Text(
-                        hadethMatnList[itemIndex].matn.join(''),
+                         hadethMatnList[itemIndex].matn.join(''),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 12,
