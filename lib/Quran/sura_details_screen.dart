@@ -1,21 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:islami_app/Quran/sura_modal.dart';
 import 'package:islami_app/color_data.dart';
 
-class SuraDetailsScreen extends StatelessWidget {
+class SuraDetailsScreen extends StatefulWidget {
   static const String routeName = 'suraDetailsScreen';
 
-  const SuraDetailsScreen({super.key});
+  SuraDetailsScreen({super.key});
+
+  @override
+  State<SuraDetailsScreen> createState() => _SuraDetailsScreenState();
+}
+
+class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
+  List<String> ayat = [];
+
+  void loadSuraDetails(int index) async {
+    String suraDetails =
+        await rootBundle.loadString("assets/files/${index + 1}.txt");
+    List<String> suraDetailsLines = suraDetails.split('\n');
+    ayat = suraDetailsLines;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as SuraModal;
+    if (ayat.isEmpty) {
+      loadSuraDetails(args.suraNumber);
+    }
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: ColorData.gold),
         centerTitle: true,
         title: Text(
-         args.suraEnName,
+          args.suraEnName,
           style: TextStyle(
             color: ColorData.gold,
           ),
@@ -23,6 +42,7 @@ class SuraDetailsScreen extends StatelessWidget {
         backgroundColor: Colors.black,
       ),
       body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15),
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/detailsScreen_bg.png'),
@@ -31,14 +51,50 @@ class SuraDetailsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(
-              height: 30,
+              height: 0,
             ),
             Text(
-              args.suraArName,
+              " سورة ${args.suraArName}",
               style: TextStyle(
-                color: ColorData.gold,
-              ),
+                  color: ColorData.gold,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20),
               textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            // Text(
+            //   'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
+            //   style: TextStyle(
+            //       color: ColorData.gold,
+            //       fontWeight: FontWeight.bold,
+            //       fontSize: 30),
+            //   textAlign: TextAlign.center,
+            // ),
+            Expanded(
+              child: ayat.isEmpty
+                  ? Center(
+                      child: CircularProgressIndicator(
+                      color: ColorData.gold,
+                    ))
+                  : ListView.builder(
+                      itemBuilder: (context, index) {
+                        return Text(
+                          '[${index+1}] ${ayat[index]}',
+                          style: TextStyle(
+                              color: ColorData.gold,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                          textAlign: TextAlign.right,
+
+                        );
+                      },
+                      itemCount: ayat.length,
+                    ),
+            ),
+            SizedBox(
+              height: 110,
             )
           ],
         ),
