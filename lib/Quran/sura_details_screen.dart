@@ -42,17 +42,19 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
         backgroundColor: Colors.black,
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).size.height * 0.119,
+            right: MediaQuery.of(context).size.height * 0.019,
+            left: MediaQuery.of(context).size.height * 0.019, ),
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/detailsScreen_bg.png'),
                 fit: BoxFit.cover)),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
-              height: 0,
-            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.04,),
             Text(
               " سورة ${args.suraArName}",
               style: TextStyle(
@@ -61,17 +63,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                   fontSize: 20),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
-              height: 60,
-            ),
-            // Text(
-            //   'بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ',
-            //   style: TextStyle(
-            //       color: ColorData.gold,
-            //       fontWeight: FontWeight.bold,
-            //       fontSize: 30),
-            //   textAlign: TextAlign.center,
-            // ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.04,),
             Expanded(
               child: ayat.isEmpty
                   ? Center(
@@ -81,21 +73,17 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                   : ListView.builder(
                       itemBuilder: (context, index) {
                         return Text(
-                          '[${index+1}] ${ayat[index]}',
+                          '[${index + 1}] ${ayat[index]}',
                           style: TextStyle(
                               color: ColorData.gold,
                               fontWeight: FontWeight.bold,
                               fontSize: 20),
                           textAlign: TextAlign.right,
-
                         );
                       },
                       itemCount: ayat.length,
                     ),
             ),
-            SizedBox(
-              height: 110,
-            )
           ],
         ),
       ),

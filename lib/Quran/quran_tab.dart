@@ -27,9 +27,7 @@ class QuranTab extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 110,
-              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.14,),
               TextField(
                 decoration: InputDecoration(
                   filled: true,
@@ -55,9 +53,7 @@ class QuranTab extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
               const Text(
                 'Most Recently',
                 style: TextStyle(color: ColorData.white),
