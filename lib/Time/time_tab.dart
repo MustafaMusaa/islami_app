@@ -11,6 +11,7 @@ class TimeTab extends StatelessWidget {
               image: AssetImage('assets/images/time_bg.png'),fit: BoxFit.cover)
       ),
       child: Scaffold(
+        backgroundColor: Colors.transparent,
 
       ),
     );

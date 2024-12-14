@@ -30,6 +30,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
       loadSuraDetails(args.suraNumber);
     }
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         iconTheme: IconThemeData(color: ColorData.gold),
         centerTitle: true,
