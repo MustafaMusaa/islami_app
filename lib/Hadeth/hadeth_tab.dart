@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
+import 'package:islami_app/Hadeth/hadeth_details_screen.dart';
 import 'package:islami_app/Hadeth/hadeth_modal.dart';
 import 'package:islami_app/color_data.dart';
 
@@ -50,11 +51,11 @@ class _HadethTabState extends State<HadethTab> {
         body: Column(
           children: [
             SizedBox(
-              height: 100,
+              height: MediaQuery.of(context).size.height*0.11,
             ),
             CarouselSlider.builder(
               options: CarouselOptions(
-                height: 600,
+                height: MediaQuery.of(context).size.height*.68,
                 enlargeCenterPage: true,
                 enableInfiniteScroll: false,
                 initialPage: 0,
@@ -63,47 +64,56 @@ class _HadethTabState extends State<HadethTab> {
               itemCount: hadethMatnList.length,
               itemBuilder:
                   (BuildContext context, int itemIndex, int pageViewIndex) =>
-                      Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/hadethCard_bg.png'),
-                      fit: BoxFit.fill,
-                    ),
-                    borderRadius: BorderRadius.circular(30),
-                    color: ColorData.gold),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 20,),
-                      Text(
-                        hadethMatnList[itemIndex].title,
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                      InkWell(
+                        onTap: (){
+                          Navigator.of(context).pushNamed(HadethDetailsScreen.routeName,
+                              arguments:
+                              hadethMatnList[itemIndex]
+
+                          );
+                        },
+                        child: Container(
+                                        width: MediaQuery.of(context).size.width,
+                                        height: MediaQuery.of(context).size.height,
+                                        padding: EdgeInsets.all(10),
+                                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                        image: AssetImage('assets/images/hadethCard_bg.png'),
+                        fit: BoxFit.fill,
+                                            ),
+                                            borderRadius: BorderRadius.circular(30),
+                                            color: ColorData.gold),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            children: [
+                        SizedBox(height: 20,),
+                        Text(
+                          hadethMatnList[itemIndex].title,
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
+                        SizedBox(height: 20,),
+                        Expanded(
+                            child: Text(
+                           hadethMatnList[itemIndex].matn.join(''),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height*0.09,
+                        )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                       ),
-                      SizedBox(height: 20,),
-                      Expanded(
-                          child: Text(
-                         hadethMatnList[itemIndex].matn.join(''),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )),
-                      SizedBox(
-                        height: 30,
-                      )
-                    ],
-                  ),
-                ),
-              ),
             )
           ],
         ),
