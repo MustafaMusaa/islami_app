@@ -16,8 +16,10 @@ class QuranTab extends StatelessWidget {
       decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/images/quran_bg.png'),
-              fit: BoxFit.fill)),
+              fit: BoxFit.fill
+          )),
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,

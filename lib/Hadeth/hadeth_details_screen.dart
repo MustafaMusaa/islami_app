@@ -18,6 +18,7 @@ class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments as HadethModal;
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         iconTheme: IconThemeData(color: ColorData.gold),
         centerTitle: true,

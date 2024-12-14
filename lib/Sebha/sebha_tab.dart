@@ -22,6 +22,7 @@ class _SebhaTabState extends State<SebhaTab> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        color: Colors.transparent,
           image: DecorationImage(
               image: AssetImage('assets/images/sebha_bg.png'),
               fit: BoxFit.cover)),
@@ -50,6 +51,7 @@ class _SebhaTabState extends State<SebhaTab> {
           ;
         },
         child: Scaffold(
+          backgroundColor: Colors.transparent,
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -89,8 +91,7 @@ class _SebhaTabState extends State<SebhaTab> {
                         duration: Duration(milliseconds: 50),
                         child: Image.asset(
                           'assets/images/SebhaBody.png',
-                          fit: BoxFit.fitWidth,
-                          centerSlice: Rect.zero,
+                          fit: BoxFit.fill,
                         )),
                   ],
                 ),

@@ -45,6 +45,7 @@ class _HadethTabState extends State<HadethTab> {
               image: AssetImage('assets/images/hadeth_bg.png'),
               fit: BoxFit.fill)),
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
         ),
